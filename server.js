@@ -1,15 +1,14 @@
 const express = require("express")
-const path = require("path")
+const bodyParser = require("body-parser")
+const aGetData = require("./arbetyGetData.js")
 
 const app = express()
-const router = express.Router()
+const port = 3000
 
-router.get("/", (req, res)=>{
-    res.sendFile(path.join(__dirname + "/arbetyGetData.js"))
-})
+const Urlpth = require("./router")
 
-app.use(router)
+app.use(bodyParser.json())
 
-app.listen(3333, ()=>{
-    console.log("servidor rodando")
-})
+app.use("/", Urlpth)
+
+app.listen(port, ()=>console.log("Server running on port 3000"))
