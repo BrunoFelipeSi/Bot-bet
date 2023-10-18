@@ -15,6 +15,7 @@ function dataAtualFormatada(){
 
 async function run(){
     let browser
+    console.log("Coletando dados do Arbety")
     try{
         browser = await puppeteer.launch({headless: 'new'})
         const page = await browser.newPage()
@@ -61,3 +62,4 @@ async function run(){
 
 run()
 
+module.exports = {run}
