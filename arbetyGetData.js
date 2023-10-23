@@ -1,17 +1,6 @@
+//Entra na página do arbety e pegas um array com os últimos 20 itens.
 const puppeteer = require('puppeteer')
-const cron = require('node-cron')
-const betdb = require('./db.js')
-
-function dataAtualFormatada(){
-    var data = new Date()
-        dia  = data.getDate().toString().padStart(2, '0')
-        mes  = (data.getMonth()+1).toString().padStart(2, '0') //+1 pois no getMonth Janeiro começa com zero.
-        ano  = data.getFullYear()
-        hora = data.getHours().toString().padStart(2, '0')
-        min = data.getMinutes().toString().padStart(2, '0')
-        sec = data.getSeconds().toString().padStart(2, '0')
-    return ano+"-"+mes+"-"+dia+" "+hora+":"+min+":"+sec
-}
+const bdfirebase = require('./bdfirebase.js')
 
 async function run(){
     let browser
@@ -35,31 +24,23 @@ async function run(){
             return arrayItens
         }
 
-        function guardaUltimoItemBD (colecaoItens){
-                cor = (colecaoItens[19] == 0) ? 'Branco' : (colecaoItens[19] < 8) ? 'Vermelho' : 'Verde'
-                betdb.pool.query(`INSERT INTO rodadas (horario,cor,numero) VALUES (?,?,?)`,[dataAtualFormatada(),cor,colecaoItens[19]])
-        }
-
         for (var i = 0; i < 200; i++){
             await page.waitForFunction(() => document.body.textContent.includes("Aguardando próxima rodada..."))
             await sleep(2300)
             let colecaoItens = await pegaItens()
-            //console.log(colecaoItens)
-            guardaUltimoItemBD(colecaoItens)
+            bdfirebase.addLastItem(colecaoItens)
             await sleep(3500)
         }
-        betdb.pool.end()
+        
         await browser.close()
 
     } catch (e) {
-        console.error('run failed', e)
+        console.error('A execução falhou', e)
     } finally {
         if (browser) {
             await browser.close()
         }
     }
 }
-
-run()
 
 module.exports = {run}
