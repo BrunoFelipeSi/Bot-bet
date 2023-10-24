@@ -10,9 +10,13 @@
     <div class="border-white">
         Coleta de rodadas acontecendo no Banco de Dados.
     </div>
-    <button onclick="executaColeta.run()" id="btn_dialog">Ativar servidor de coleta de dados</button>
+    <button onclick="getArrayItens()" id="btn_getItens">Ler últimas 20 entradas</button>
+   
+    <form name="f_cadastro" action="#" method="get">
+        <textarea id="last20itens" name="f_comentario" cols="30" rows="10" maxlength="200" autofocus>
+            Texto padrão.
+        </textarea>
+    </form>
     <script src="makeStatistic.js"></script>
-    <script src="arbetyGetData.js"></script>
-    <script src="server.js"></script>   
 </body>
 </html>

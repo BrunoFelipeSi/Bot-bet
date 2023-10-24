@@ -2,6 +2,7 @@
 const puppeteer = require('puppeteer')
 const bdfirebase = require('./bdfirebase.js')
 
+let colecaoItens = []
 async function run(){
     let browser
     console.log("Coletando dados do Arbety")
@@ -27,7 +28,7 @@ async function run(){
         for (var i = 0; i < 200; i++){
             await page.waitForFunction(() => document.body.textContent.includes("Aguardando próxima rodada..."))
             await sleep(2300)
-            let colecaoItens = await pegaItens()
+            colecaoItens = await pegaItens()
             bdfirebase.addLastItem(colecaoItens)
             await sleep(3500)
         }
@@ -43,4 +44,8 @@ async function run(){
     }
 }
 
-module.exports = {run}
+function pushArrayItens(){
+    return colecaoItens
+}
+
+module.exports = {run, pushArrayItens}

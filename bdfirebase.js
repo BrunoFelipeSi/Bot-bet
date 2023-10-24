@@ -12,11 +12,11 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 const db=admin.firestore()
 
-const PORT = process.env.PORT || 8080
+// const PORT = process.env.PORT || 8080
 
-app.listen(PORT, () => {
-    console.log(`Server is running on PORT ${PORT}.`)
-})
+// app.listen(PORT, () => {
+//     console.log(`Server is running on PORT ${PORT}.`)
+// })
 
 const checkLastId = async () => {
     const snapshot = await db.collection('betbot').get();
@@ -33,9 +33,7 @@ async function addLastItem (itens) {
             horario: new Date(),
             numero: itens[19]
         }
-        console.log(rodadaJson)
         const res = await db.collection('betbot').doc(id).set(rodadaJson)
-        console.log('Item adcionado com sucesso')
     } catch (e) {
         console.error('Adição do item falhou', e)
     }
