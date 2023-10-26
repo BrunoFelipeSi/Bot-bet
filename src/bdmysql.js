@@ -9,8 +9,8 @@ const mysql = require('mysql2')
 
 const pool = mysql.createPool({
     connectionLimit : 100, //important
-    host     : 'localhost',
-    user     : 'mysqlbet',
+    host     : 'botbetdb.cebnjwrqc7ih.us-east-1.rds.amazonaws.com',
+    user     : 'admin',
     password : 'Onurb0928!',
     database : 'arbety_double',
     debug    :  false

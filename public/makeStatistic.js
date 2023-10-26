@@ -3,7 +3,7 @@
 //via fetch/api
 let array = []
 function getArrayItens(){
-    fetch('http://localhost:8080/read')
+    fetch(process.env.URL + process.env.PORT + '/read')
         .then((res) => {
             return res.json();
         })
