@@ -1,6 +1,6 @@
 //Entra na página do arbety e pegas um array com os últimos 20 itens.
 const puppeteer = require('puppeteer')
-const bdfirebase = require('./bdfirebase.js')
+const bdmysql = require('./bdmysql.js')
 
 let colecaoItens = []
 async function run(){
@@ -29,7 +29,7 @@ async function run(){
             await page.waitForFunction(() => document.body.textContent.includes("Aguardando próxima rodada..."))
             await sleep(2300)
             colecaoItens = await pegaItens()
-            bdfirebase.addLastItem(colecaoItens)
+            bdmysql.addLastItem(colecaoItens)
             await sleep(3500)
         }
         
