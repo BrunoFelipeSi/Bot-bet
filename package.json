@@ -1,21 +1,19 @@
 {
   "name": "bot-bet",
   "version": "1.0.0",
-  "description": "Collect data from double on arbety website.",
-  "main": "src/index.js",
+  "description": "Collect data from double on arbety website",
+  "main": "index.js",
   "scripts": {
-    "start": "nodemon src/index.js",
+    "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Bruno-Felipe",
+  "author": "Bruno Felipe",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.2",
     "mysql2": "^3.6.2",
-    "node-cron": "^3.0.2",
-    "nodemon": "^3.0.1",
-    "puppeteer": "^21.3.8"
+    "puppeteer": "^21.4.1"
   },
   "engines": {
     "node": "18"

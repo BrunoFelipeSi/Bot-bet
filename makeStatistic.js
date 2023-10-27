@@ -3,7 +3,7 @@
 //via fetch/api
 let array = []
 function getArrayItens(){
-    fetch(process.env.URL + process.env.PORT + '/read')
+    fetch(process.env.MYURL + ':' + process.env.PORT + '/read') //faltou 2 pontos no código de upload
         .then((res) => {
             return res.json();
         })
