@@ -1,15 +1,8 @@
-//CONEXÃO E FUNÇÕES COM O BD MYSQL
-// const express = require("express")
-// const app = express()
-
-// app.use(express.json())
-// app.use(express.urlencoded({extended: true}))
-
 const mysql = require('mysql2')
 
 const pool = mysql.createPool({
-    connectionLimit : 100, //important
-    host     : 'botbetdb.cebnjwrqc7ih.us-east-1.rds.amazonaws.com',
+    connectionLimit : 100, 
+    host     : 'botbetdb2.cimlxuvpq98k.sa-east-1.rds.amazonaws.com',
     user     : 'admin',
     password : 'Onurb0928!',
     database : 'arbety_double',
