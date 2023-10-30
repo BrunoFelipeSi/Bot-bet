@@ -2,10 +2,10 @@ const mysql = require('mysql2')
 
 const pool = mysql.createPool({
     connectionLimit : 100, 
-    host     : 'botbetdb2.cimlxuvpq98k.sa-east-1.rds.amazonaws.com',
-    user     : 'admin',
+    host     : 'db4free.net',
+    user     : 'botnetuserdb',
     password : 'Onurb0928!',
-    database : 'arbety_double',
+    database : 'bdbotnet',
     debug    :  false
 });
 

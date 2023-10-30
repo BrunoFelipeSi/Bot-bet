@@ -9,9 +9,9 @@ async function run(){
     try{
         browser = await puppeteer.launch({headless: 'new'})
         const page = await browser.newPage()
-        page.setDefaultNavigationTimeout( 2 * 60 * 500)
-        await page.goto('https://www.arbety.com/games/double')
-        function sleep(ms) {  
+        page.setDefaultNavigationTimeout(60000)
+        await page.goto('https://www.arbety.com/games/double', { waitUntil: 'load' , timeout: 60000})
+        function sleep(ms) {
             return new Promise(resolve => setTimeout(resolve, ms))
         }
         const selector = '.item'
@@ -25,8 +25,8 @@ async function run(){
             return arrayItens
         }
 
-        for (var i = 0; i < 200; i++){
-            await page.waitForFunction(() => document.body.textContent.includes("Aguardando próxima rodada..."))
+        for (var i = 0; i < 3650; i++){
+            await page.waitForFunction(() => document.body.textContent.includes("Aguardando próxima rodada..."))// "Waiting for next round..."
             await sleep(2300)
             colecaoItens = await pegaItens()
             bdmysql.addLastItem(colecaoItens)
